@@ -1,1 +1,2 @@
-# h1 Patrick Cataldo
+# Patrick Cataldo
+## Welcome to my Personal Portfolio
