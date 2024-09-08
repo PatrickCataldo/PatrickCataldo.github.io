@@ -56,13 +56,46 @@
             display: flex;
             overflow-x: auto;
             margin-bottom: 20px;
+            gap: 10px;
         }
+
+        .project-image-container {
+            position: relative;
+            cursor: pointer;
+        }
+
         .project-image {
             width: 200px;
             height: 150px;
             object-fit: cover;
-            margin-right: 10px;
-            flex-shrink: 0;
+            border-radius: 5px;
+        }
+
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
             cursor: pointer;
         }
         .download-btn {
@@ -100,18 +133,18 @@
             <div class="project">
                 <h3>Inventory Management System</h3>
                 <div class="project-images">
-                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-020903.png" data-lightbox="inventory" data-title="Products Screen">
-                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-020903.png" alt="Products Screen" class="project-image" onerror="this.onerror=null; this.src='placeholder.png'; this.alt='Image failed to load';">
-                    </a>
-                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-021051.png" data-lightbox="inventory" data-title="Suppliers Screen">
-                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021051.png" alt="Suppliers Screen" class="project-image" onerror="this.onerror=null; this.src='placeholder.png'; this.alt='Image failed to load';">
-                    </a>
-                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-021139.png" data-lightbox="inventory" data-title="Inventory Screen">
-                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021139.png" alt="Inventory Screen" class="project-image" onerror="this.onerror=null; this.src='placeholder.png'; this.alt='Image failed to load';">
-                    </a>
-                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-021333.png" data-lightbox="inventory" data-title="Inventory Screen">
-                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021333.png" alt="Sales Screen" class="project-image" onerror="this.onerror=null; this.src='placeholder.png'; this.alt='Image failed to load';">
-                    </a>
+                    <div class="project-image-container">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-020903.png" alt="Products Screen" class="project-image">
+                    </div>
+                    <div class="project-image-container">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021051.png" alt="Suppliers Screen" class="project-image">
+                    </div>
+                    <div class="project-image-container">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021139.png" alt="Inventory Screen" class="project-image">
+                    </div>
+                    <div class="project-image-container">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021333.png" alt="Inventory Screen" class="project-image">
+                    </div>
                 </div>
                 <p>This is a simple Inventory Management System, designed to help a small business track its products, suppliers, inventory levels, sales, and purchase orders.<br><br>
                 I wanted to showcase the culmination of my skills as a data analyst, and as a programmer, and creating a full application with robust data tracking, and insightful analytics was the best way to do it.<br><br>
