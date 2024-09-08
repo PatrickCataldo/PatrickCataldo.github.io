@@ -27,9 +27,16 @@
         }
         header h1 {
             margin: 0;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
         }
-        .about, .skills, .contact {
+        header .subtitle {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .about {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             padding: 20px 0;
         }
         .headshot {
@@ -37,12 +44,25 @@
             height: 200px;
             background-color: #ddd;
             border-radius: 50%;
-            margin: 0 auto;
         }
         .bio {
+            width: 60%;
+        }
+        .skills {
+            padding: 20px 0;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .skill-item {
             text-align: center;
-            max-width: 800px;
-            margin: 20px auto;
+            width: 100px;
+        }
+        .skill-icon {
+            width: 50px;
+            height: 50px;
         }
         .project {
             background: #fff;
@@ -112,38 +132,17 @@
             font-size: 30px;
             cursor: pointer;
         }
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .skill-item {
-            text-align: center;
-            width: 100px;
-        }
-        .skill-icon {
-            width: 50px;
-            height: 50px;
-        }
-        .contact-list {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .contact-item {
-            text-align: center;
-        }
-        .contact-icon {
-            width: 30px;
-            height: 30px;
-        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>Patrick Cataldo</h1>
+            <div class="subtitle">
+                +1 804 887 0760 | patrickccataldo@gmail.com | 
+                <a href="https://www.linkedin.com/in/your-profile" target="_blank" style="color: #fff;">LinkedIn</a> | 
+                <a href="path/to/your-resume.pdf" target="_blank" style="color: #fff;">Resume</a>
+            </div>
         </div>
     </header>
 
@@ -153,10 +152,10 @@
             <div class="bio">
                 <h2>About Me</h2>
                 <p>
-                    Greetings! I'm Patrick Cataldo, a recent graduate from James Madison University with a dual focus in Economics and Computer Information Systems.<br><br>
+                    Helo! I'm Patrick, a recent graduate from James Madison University where I studied Economics and Computer Information Systems.<br><br>
                     My passion lies in the realm of data analytics and programming, where I continuously seek opportunities to expand my expertise and contribute meaningfully to innovative projects.<br><br>
-                    This portfolio showcases a selection of my projects, demonstrating my proficiency in programming, data analytics, and data science.<br><br>
-                    I welcome professional inquiries and collaboration opportunities.
+                    This portfolio showcases a selection of my projects, demonstrating my proficiency in programming, data analytics, and problem solving.<br><br>
+                    If you would like to connect with me, please feel free to reach out to me through any of my listed contact methods!
                 </p>
             </div>
         </section>
@@ -193,7 +192,7 @@
                     Tools used: Java | SQL | CSS<br><br>
                     <em>Note: This project is currently in development. Dashboard and report features will be implemented in future updates.</em>
                 </p>
-                <a href="https://github.com/PatrickCataldo/InventorySystem/raw/main/Inventory%20Management%20System.zip" class="download-btn">Download Project</a>
+                <a href="#" class="download-btn">Download Project</a>
             </div>
 
             <div class="project">
@@ -208,32 +207,6 @@
 
             <!-- Add more project sections as needed -->
 
-        </section>
-
-        <section class="contact">
-            <h2>Contact Me</h2>
-            <div class="contact-list">
-                <div class="contact-item">
-                    <img src="path/to/phone-icon.png" alt="Phone" class="contact-icon">
-                    <p>+1 804 887 0760</p>
-                </div>
-                <div class="contact-item">
-                    <img src="path/to/email-icon.png" alt="Email" class="contact-icon">
-                    <p>patrickccataldo@gmail.com</p>
-                </div>
-                <div class="contact-item">
-                    <a href="https://www.linkedin.com/in/your-profile" target="_blank">
-                        <img src="path/to/linkedin-icon.png" alt="LinkedIn" class="contact-icon">
-                        <p>LinkedIn</p>
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <a href="path/to/your-resume.pdf" target="_blank">
-                        <img src="path/to/resume-icon.png" alt="Resume" class="contact-icon">
-                        <p>Resume</p>
-                    </a>
-                </div>
-            </div>
         </section>
     </div>
 
