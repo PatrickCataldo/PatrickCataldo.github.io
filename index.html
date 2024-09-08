@@ -32,6 +32,15 @@
         header .subtitle {
             font-size: 0.9em;
             margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
         }
         .about {
             display: flex;
@@ -40,13 +49,15 @@
             padding: 20px 0;
         }
         .headshot {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             background-color: #ddd;
             border-radius: 50%;
+            flex-shrink: 0;
+            margin-right: 30px;
         }
         .bio {
-            width: 60%;
+            flex-grow: 1;
         }
         .skills {
             padding: 20px 0;
@@ -111,6 +122,23 @@
             flex-shrink: 0;
             cursor: pointer;
         }
+        .project-description {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px 20px;
+        }
+        .project-description dt {
+            font-weight: bold;
+        }
+        .project-tools {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .tool-icon {
+            width: 30px;
+            height: 30px;
+        }
         .download-btn {
             display: inline-block;
             background: #333;
@@ -159,9 +187,14 @@
         <div class="container">
             <h1>Patrick Cataldo</h1>
             <div class="subtitle">
-                +1 804 887 0760 | patrickccataldo@gmail.com | 
-                <a href="https://www.linkedin.com/in/patrick-cataldo" target="_blank" style="color: #fff;">LinkedIn</a> | 
-                <a href="path/to/your-resume.pdf" target="_blank" style="color: #fff;">Resume</a>
+                <span><img src="contact_icons/phone-icon.svg" alt="Phone" class="contact-icon"> +1 804 887 0760</span>
+                <span><img src="contact_icons/email-icon.svg" alt="Email" class="contact-icon"> patrickccataldo@gmail.com</span>
+                <a href="https://www.linkedin.com/in/patrick-cataldo" target="_blank" style="color: #fff;">
+                    <img src="contact_icons/linkedin-icon.svg" alt="LinkedIn" class="contact-icon"> LinkedIn
+                </a>
+                <a href="resumes/PCC_Resume_August2024_2.pdf" target="_blank" style="color: #fff;">
+                    <img src="contact_icons/resume-icon.svg" alt="Resume" class="contact-icon"> Resume
+                </a>
             </div>
         </div>
     </header>
@@ -172,7 +205,7 @@
             <div class="bio">
                 <h2>About Me</h2>
                 <p>
-                    Helo! I'm Patrick, a recent graduate from James Madison University where I studied Economics and Computer Information Systems.<br><br>
+                    Hello! I'm Patrick, a recent graduate from James Madison University where I studied Economics and Computer Information Systems.<br><br>
                     My passion lies in the realm of data analytics and programming, where I continuously seek opportunities to expand my expertise and contribute meaningfully to innovative projects.<br><br>
                     This portfolio showcases a selection of my projects, demonstrating my proficiency in programming, data analytics, and problem solving.<br><br>
                     If you would like to connect with me, please feel free to reach out to me through any of my listed contact methods!
@@ -216,6 +249,10 @@
                         <img src="skill-icons/vb-icon.svg" alt="Visual Basic" class="skill-icon">
                         <p>VBA</p>
                     </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/css-icon.svg" alt="CSS" class="skill-icon">
+                        <p>CSS</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -231,12 +268,22 @@
                     <img src="InventorySystem_Project_Images/inventory.png" alt="Inventory" class="project-image">
                     <img src="InventorySystem_Project_Images/sales.png" alt="Sales" class="project-image">
                 </div>
-                <p>
-                    This Inventory Management System is designed to assist small businesses in tracking products, suppliers, inventory levels, sales, and purchase orders.<br><br>
-                    It showcases my skills as both a data analyst and programmer, demonstrating my ability to create a comprehensive application with robust data tracking and insightful analytics.<br><br>
-                    Tools used: Java | SQL | CSS<br><br>
-                    <em>Note: This project is currently in development. Dashboard and report features will be implemented in future updates.</em>
-                </p>
+                <dl class="project-description">
+                    <dt>Problem:</dt>
+                    <dd>Small businesses struggle to efficiently track products, suppliers, inventory levels, sales, and purchase orders.</dd>
+                    
+                    <dt>Action:</dt>
+                    <dd>Developed a comprehensive Inventory Management System to address these challenges.</dd>
+                    
+                    <dt>Result:</dt>
+                    <dd>Created a robust application that streamlines inventory tracking and provides insightful analytics, showcasing my skills in data analysis and programming.</dd>
+                </dl>
+                <div class="project-tools">
+                    <img src="skill-icons/java-icon.svg" alt="Java" class="tool-icon">
+                    <img src="skill-icons/sql-icon.svg" alt="SQL" class="tool-icon">
+                    <img src="skill-icons/css-icon.svg" alt="CSS" class="tool-icon">
+                </div>
+                <p><em>Note: This project is currently in development. Dashboard and report features will be implemented in future updates.</em></p>
                 <a href="#" class="download-btn">Download Project</a>
             </div>
 
@@ -246,7 +293,19 @@
                     <div class="project-image"></div>
                     <div class="project-image"></div>
                 </div>
-                <p>Description of Project 2. Highlight your role, the technologies you used, and the impact of the project.</p>
+                <dl class="project-description">
+                    <dt>Problem:</dt>
+                    <dd>Describe the problem this project addresses.</dd>
+                    
+                    <dt>Action:</dt>
+                    <dd>Explain the actions you took to solve the problem.</dd>
+                    
+                    <dt>Result:</dt>
+                    <dd>Describe the outcomes and impact of your project.</dd>
+                </dl>
+                <div class="project-tools">
+                    <!-- Add relevant tool icons here -->
+                </div>
                 <a href="#" class="download-btn">Download Project</a>
             </div>
 
@@ -279,8 +338,8 @@
         });
 
         // Project reveal on scroll
-        const projects = document.querySelectorAll('.skills-container, .project');
-        const revealProject = (entries, observer) => {
+        const revealElements = document.querySelectorAll('.skills-container, .project');
+        const revealElement = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -290,13 +349,13 @@
             });
         };
 
-        const projectObserver = new IntersectionObserver(revealProject, {
+        const elementObserver = new IntersectionObserver(revealElement, {
             root: null,
             threshold: 0.1,
         });
 
-        projects.forEach(project => {
-            projectObserver.observe(project);
+        revealElements.forEach(element => {
+            elementObserver.observe(element);
         });
     </script>
 </body>
