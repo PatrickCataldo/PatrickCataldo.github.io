@@ -125,13 +125,19 @@
             overflow-x: auto;
             margin-bottom: 20px;
         }
-        .project-image {
+            .project-image {
             width: 200px;
             height: 150px;
             object-fit: cover;
             margin-right: 10px;
             flex-shrink: 0;
             cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+    
+        .project-image:hover {
+            transform: scale(1.1);
+            z-index: 1;
         }
         .project-description {
             display: grid;
@@ -202,6 +208,14 @@
             justify-content: center;
             align-items: center;
             gap: 15px;
+        }
+        footer a {
+        color: #fff;
+        text-decoration: none;
+        }
+    
+        footer a:hover {
+            text-decoration: underline;
         }
         .typed-cursor {
             opacity: 1;
@@ -418,11 +432,11 @@
         <div class="container">
             <span><img src="contact-icons/phone-icon.svg" alt="Phone" class="contact-icon"> +1 804 887 0760</span>
             <span><img src="contact-icons/email-icon.svg" alt="Email" class="contact-icon"> patrickccataldo@gmail.com</span>
-            <a href="https://www.linkedin.com/in/patrick-cataldo" target="_blank" style="color: #fff;">
-                <img src="contact-icons/linkedin-icon.svg" alt="LinkedIn" class="contact-icon"> LinkedIn
+            <a href="https://www.linkedin.com/in/patrick-cataldo" target="_blank">
+                <img src="contact-icons/linkedin-icon.svg" alt="LinkedIn" class="contact-icon"> LinkedIn Profile
             </a>
-            <a href="resumes/PCC_Resume_September2024.pdf" target="_blank" style="color: #fff;">
-                <img src="contact-icons/resume-icon.svg" alt="Resume" class="contact-icon"> Resume
+            <a href="resumes/PCC_Resume_September2024.pdf" target="_blank">
+                <img src="contact-icons/resume-icon.svg" alt="Resume" class="contact-icon"> View my Resume
             </a>
         </div>
     </footer>
