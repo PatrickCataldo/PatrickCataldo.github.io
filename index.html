@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            padding-bottom: 20px;
+        }
+        .about {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .headshot {
+            width: 200px;
+            height: 200px;
+            background-color: #ddd;
+            border-radius: 50%;
+        }
+        .bio {
+            width: 60%;
+        }
+        .project {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .project-images {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        .project-image {
+            width: 200px;
+            height: 150px;
+            background-color: #ddd;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Your Name</h1>
+        </div>
+    </header>
 
+    <div class="container">
+        <section class="about">
+            <div class="headshot"></div>
+            <div class="bio">
+                <h2>About Me</h2>
+                <p>This is a short description about yourself. Talk about your skills, interests, and what you're passionate about in the world of technology and development.</p>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>My Projects</h2>
+            
+            <div class="project">
+                <h3>Project 1 Title</h3>
+                <div class="project-images">
+                    <div class="project-image"></div>
+                    <div class="project-image"></div>
+                    <div class="project-image"></div>
+                </div>
+                <p>Description of Project 1. Discuss the purpose, tools used, and any interesting challenges you faced or overcame.</p>
+                <a href="#" class="download-btn">Download Project</a>
+            </div>
+
+            <div class="project">
+                <h3>Project 2 Title</h3>
+                <div class="project-images">
+                    <div class="project-image"></div>
+                    <div class="project-image"></div>
+                </div>
+                <p>Description of Project 2. Highlight your role, the technologies you used, and the impact of the project.</p>
+                <a href="#" class="download-btn">Download Project</a>
+            </div>
+
+            <!-- Add more project sections as needed -->
+
+        </section>
+    </div>
+</body>
+</html>
