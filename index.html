@@ -203,28 +203,70 @@
             align-items: center;
             gap: 15px;
         }
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-icon {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        .filter-icon:hover, .filter-icon.active {
+            opacity: 1;
+        }
+        .about-container {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .about-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Patrick Cataldo</h1>
+            <h1 id="typed-title"></h1>
             <hr>
             <div class="subtitle">Project Portfolio</div>
         </div>
     </header>
 
     <div class="container">
-        <section class="about">
-            <div class="headshot"></div>
-            <div class="bio">
-                <h2>About Me</h2>
-                <p>
-                    Hello! I'm Patrick, a recent graduate from James Madison University where I studied Economics and Computer Information Systems.<br><br>
-                    My passion lies in the realm of data analytics and programming, where I continuously seek opportunities to expand my expertise and contribute meaningfully to innovative projects.<br><br>
-                    This portfolio showcases a selection of my projects, demonstrating my proficiency in programming, data analytics, and problem solving.<br><br>
-                    If you would like to connect with me, please feel free to reach out to me through any of my listed contact methods!
-                </p>
+        <section class="about-container">
+            <div class="about">
+                <div class="headshot"></div>
+                <div class="bio">
+                    <h2>About Me</h2>
+                    <p>
+                        Hello! I'm Patrick, a recent graduate from James Madison University where I studied Economics and Computer Information Systems.<br><br>
+                        My passion lies in the realm of data analytics and programming, where I continuously seek opportunities to expand my expertise and contribute meaningfully to innovative projects.<br><br>
+                        This portfolio showcases a selection of my projects, demonstrating my proficiency in programming, data analytics, and problem solving.<br><br>
+                        If you would like to connect with me, please feel free to reach out to me through any of my listed contact methods!
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -274,6 +316,10 @@
 
         <section class="projects">
             <h2>My Projects</h2>
+            
+            <div class="filter-container">
+                <!-- We'll populate this dynamically with JavaScript -->
+            </div>
             
             <div class="project">
                 <h3>
@@ -400,7 +446,18 @@
         <img src="" alt="Fullscreen Image" class="fullscreen-image">
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
+        // Typing effect
+        var typed = new Typed('#typed-title', {
+            strings: ['Patrick Cataldo'],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: false,
+            showCursor: true,
+            cursorChar: '|'
+        });
+
         // Fullscreen image viewer
         const images = document.querySelectorAll('.project-image');
         const overlay = document.querySelector('.fullscreen-overlay');
@@ -418,8 +475,8 @@
             overlay.style.display = 'none';
         });
 
-        // Project reveal on scroll
-        const revealElements = document.querySelectorAll('.skills-container, .project');
+        // Project and about section reveal on scroll
+        const revealElements = document.querySelectorAll('.skills-container, .project, .about-container');
         const revealElement = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -438,6 +495,34 @@
         revealElements.forEach(element => {
             elementObserver.observe(element);
         });
+
+        // Project filtering
+        const filterContainer = document.querySelector('.filter-container');
+        const projects = document.querySelectorAll('.project');
+        const skills = ['java', 'sql', 'css', 'excel', 'vb'];
+
+        skills.forEach(skill => {
+            const icon = document.createElement('img');
+            icon.src = `skill-icons/${skill}-icon.svg`;
+            icon.alt = skill;
+            icon.classList.add('filter-icon');
+            icon.addEventListener('click', () => filterProjects(skill));
+            filterContainer.appendChild(icon);
+        });
+
+        function filterProjects(skill) {
+            const filterIcon = document.querySelector(`.filter-icon[alt="${skill}"]`);
+            const isActive = filterIcon.classList.toggle('active');
+
+            projects.forEach(project => {
+                const projectSkills = project.querySelector('.project-tools').innerText.toLowerCase();
+                if (isActive) {
+                    project.style.display = projectSkills.includes(skill) ? 'block' : 'none';
+                } else {
+                    project.style.display = 'block';
+                }
+            });
+        }
     </script>
 </body>
 </html>
