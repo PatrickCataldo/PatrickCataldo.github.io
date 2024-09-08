@@ -212,23 +212,6 @@
             50% { opacity: 0; }
             100% { opacity: 1; }
         }
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .filter-icon {
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-        .filter-icon:hover, .filter-icon.active {
-            opacity: 1;
-        }
         .about-container {
             background: #fff;
             padding: 20px;
@@ -243,14 +226,21 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .title-line {
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            margin: 10px auto;
+            transition: width 1s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1 id="typed-title"></h1>
-            <hr>
-            <div class="subtitle">Project Portfolio</div>
+            <h1 id="typed-name"></h1>
+            <div id="title-line" class="title-line"></div>
+            <div id="typed-subtitle" class="subtitle"></div>
         </div>
     </header>
 
@@ -316,10 +306,6 @@
 
         <section class="projects">
             <h2>My Projects</h2>
-            
-            <div class="filter-container">
-                <!-- We'll populate this dynamically with JavaScript -->
-            </div>
             
             <div class="project">
                 <h3>
@@ -448,15 +434,35 @@
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
-        // Typing effect
-        var typed = new Typed('#typed-title', {
-            strings: ['Patrick Cataldo'],
-            typeSpeed: 50,
-            backSpeed: 50,
-            loop: false,
-            showCursor: true,
-            cursorChar: '|'
-        });
+        // Typing effect and animation sequence
+        function startTypingAnimation() {
+            new Typed('#typed-name', {
+                strings: ['Patrick Cataldo'],
+                typeSpeed: 50,
+                showCursor: false,
+                onComplete: function() {
+                    setTimeout(drawLine, 500);
+                }
+            });
+        }
+
+        function drawLine() {
+            const line = document.getElementById('title-line');
+            line.style.width = '100%';
+            setTimeout(typeSubtitle, 1000);
+        }
+
+        function typeSubtitle() {
+            new Typed('#typed-subtitle', {
+                strings: ['Project Portfolio'],
+                typeSpeed: 50,
+                showCursor: true,
+                cursorChar: '|'
+            });
+        }
+
+        // Start the animation sequence when the page loads
+        window.addEventListener('load', startTypingAnimation);
 
         // Fullscreen image viewer
         const images = document.querySelectorAll('.project-image');
@@ -495,34 +501,6 @@
         revealElements.forEach(element => {
             elementObserver.observe(element);
         });
-
-        // Project filtering
-        const filterContainer = document.querySelector('.filter-container');
-        const projects = document.querySelectorAll('.project');
-        const skills = ['java', 'sql', 'css', 'excel', 'vb'];
-
-        skills.forEach(skill => {
-            const icon = document.createElement('img');
-            icon.src = `skill-icons/${skill}-icon.svg`;
-            icon.alt = skill;
-            icon.classList.add('filter-icon');
-            icon.addEventListener('click', () => filterProjects(skill));
-            filterContainer.appendChild(icon);
-        });
-
-        function filterProjects(skill) {
-            const filterIcon = document.querySelector(`.filter-icon[alt="${skill}"]`);
-            const isActive = filterIcon.classList.toggle('active');
-
-            projects.forEach(project => {
-                const projectSkills = project.querySelector('.project-tools').innerText.toLowerCase();
-                if (isActive) {
-                    project.style.display = projectSkills.includes(skill) ? 'block' : 'none';
-                } else {
-                    project.style.display = 'block';
-                }
-            });
-        }
     </script>
 </body>
 </html>
