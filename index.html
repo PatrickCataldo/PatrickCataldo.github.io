@@ -51,18 +51,38 @@
         .skills {
             padding: 20px 0;
         }
+        .skills-container {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .skills-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
         .skills-list {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 20px;
         }
         .skill-item {
             text-align: center;
-            width: 100px;
+            width: 120px;
         }
         .skill-icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        .skill-item p {
+            font-size: 14px;
+            margin: 0;
         }
         .project {
             background: #fff;
@@ -162,40 +182,41 @@
 
         <section class="skills">
             <h2>Skills</h2>
-            <div class="skills-list">
-                <div class="skill-item">
-                    <img src="skill-icons/java-icon.svg" alt="Java" class="skill-icon">
-                    <p>Java</p>
+            <div class="skills-container">
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <img src="skill-icons/java-icon.svg" alt="Java" class="skill-icon">
+                        <p>Java</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/python-icon.svg" alt="Python" class="skill-icon">
+                        <p>Python</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/R-icon.svg" alt="R" class="skill-icon">
+                        <p>R</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/sql-icon.svg" alt="SQL" class="skill-icon">
+                        <p>SQL</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/excel-icon.svg" alt="Excel" class="skill-icon">
+                        <p>Excel</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/powerbi-icon.svg" alt="PowerBI" class="skill-icon">
+                        <p>PowerBI</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/tableau-icon.svg" alt="Tableau" class="skill-icon">
+                        <p>Tableau</p>
+                    </div>
+                    <div class="skill-item">
+                        <img src="skill-icons/vb-icon.svg" alt="Visual Basic" class="skill-icon">
+                        <p>VBA</p>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <img src="skill-icons/python-icon.svg" alt="Python" class="skill-icon">
-                    <p>Python</p>
-                </div>
-                <div class="skill-item">
-                    <img src="skill-icons/R-icon.svg" alt="Python" class="skill-icon">
-                    <p>R</p>
-                </div>
-                <div class="skill-item">
-                    <img src="skill-icons/sql-icon.svg" alt="Python" class="skill-icon">
-                    <p>SQL</p>
-                </div>
-                <div class="skill-item">
-                    <img src="skill-icons/excel-icon.svg" alt="Python" class="skill-icon">
-                    <p>Excel</p>
-                </div>
-                <div class="skill-item">
-                    <img src="skill-icons/powerbi-icon.svg" alt="Python" class="skill-icon">
-                    <p>PowerBI</p>
-                </div>
-                <div class="skill-item">
-                    <img src="skill-icons/tableau-icon.svg" alt="Python" class="skill-icon">
-                    <p>Tableau</p>
-                </div>
-                <div class="skill-item">
-                    <img src="skill-icons/vb-icon.svg" alt="Python" class="skill-icon">
-                    <p>Visual Basic for Applications</p>
-                </div>
-                <!-- Add more skills as needed -->
             </div>
         </section>
 
@@ -258,7 +279,7 @@
         });
 
         // Project reveal on scroll
-        const projects = document.querySelectorAll('.project');
+        const projects = document.querySelectorAll('.skills-container, .project');
         const revealProject = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
