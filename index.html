@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patrick Cataldo | Personal Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,9 +60,10 @@
         .project-image {
             width: 200px;
             height: 150px;
-            background-color: #ddd;
+            object-fit: cover;
             margin-right: 10px;
             flex-shrink: 0;
+            cursor: pointer;
         }
         .download-btn {
             display: inline-block;
@@ -85,10 +87,10 @@
             <div class="headshot"></div>
             <div class="bio">
                 <h2>About Me</h2>
-                <p>Hello! I am a recent Graduate of James Madison University, where I studied Economics and Computer Information Systems. 
-                       I am interested in pursuing a career in data, and am always looking to add experience to my resume. 
-                                       I will be posting any personal projects that demonstrat my knowledge of programming, data analytics, and data science. 
-                    Contact Information: +1 804 887 0760 | patrickccataldo@gmail.com</p>
+                <p>Hello! I am a recent Graduate of James Madison University, where I studied Economics and Computer Information Systems.<br><br>
+                   I am interested in pursuing a career in data, and am always looking to add experience to my resume.<br><br>
+                   I will be posting any personal projects that demonstrate my knowledge of programming, data analytics, and data science.<br><br>
+                   Contact Information: +1 804 887 0760 | patrickccataldo@gmail.com</p>
             </div>
         </section>
 
@@ -98,14 +100,22 @@
             <div class="project">
                 <h3>Inventory Management System</h3>
                 <div class="project-images">
-                    <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-020903.png" alt="Products Screen" class="project-image">
-                    <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021051.png" alt="Suppliers Screen" class="project-image">
-                    <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021139.png" alt="Inventory Screen" class="project-image">
-                    <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021333.png" alt="Inventory Screen" class="project-image">
+                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-020903.png" data-lightbox="inventory" data-title="Products Screen">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-020903.png" alt="Products Screen" class="project-image">
+                    </a>
+                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-021051.png" data-lightbox="inventory" data-title="Suppliers Screen">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021051.png" alt="Suppliers Screen" class="project-image">
+                    </a>
+                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-021139.png" data-lightbox="inventory" data-title="Inventory Screen">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021139.png" alt="Inventory Screen" class="project-image">
+                    </a>
+                    <a href="InventorySystem_Project_Images/Screenshot-2024-09-08-021333.png" data-lightbox="inventory" data-title="Inventory Screen">
+                        <img src="InventorySystem_Project_Images/Screenshot-2024-09-08-021333.png" alt="Inventory Screen" class="project-image">
+                    </a>
                 </div>
-                <p>This is a simple Inventory Management System, designed to help a small business track its products, suppliers, inventory levels, sales, and purchase orders. 
-                I wanted to showcase the culmination of my skills as a data analyst, and as a programmer, and creating a full application with robust data tracking, and insightful analytics was the best way to do it.
-                Tools used: Java | SQL | CSS 
+                <p>This is a simple Inventory Management System, designed to help a small business track its products, suppliers, inventory levels, sales, and purchase orders.<br><br>
+                I wanted to showcase the culmination of my skills as a data analyst, and as a programmer, and creating a full application with robust data tracking, and insightful analytics was the best way to do it.<br><br>
+                Tools used: Java | SQL | CSS<br><br>
                 *DISCLAIMER: I am currently working on this project. As of now, the dashboard and report features are not implemented, and will be soon!</p>
                 <a href="https://github.com/PatrickCataldo/InventorySystem/raw/main/Inventory%20Management%20System.zip" class="download-btn">Download Project</a>
             </div>
@@ -124,5 +134,8 @@
 
         </section>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </body>
 </html>
