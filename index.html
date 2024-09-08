@@ -29,10 +29,7 @@
             margin: 0;
             padding-bottom: 20px;
         }
-        .about {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .about, .skills, .contact {
             padding: 20px 0;
         }
         .headshot {
@@ -40,9 +37,12 @@
             height: 200px;
             background-color: #ddd;
             border-radius: 50%;
+            margin: 0 auto;
         }
         .bio {
-            width: 60%;
+            text-align: center;
+            max-width: 800px;
+            margin: 20px auto;
         }
         .project {
             background: #fff;
@@ -84,6 +84,10 @@
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
+        .download-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
         .fullscreen-overlay {
             display: none;
             position: fixed;
@@ -108,6 +112,32 @@
             font-size: 30px;
             cursor: pointer;
         }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .skill-item {
+            text-align: center;
+            width: 100px;
+        }
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+        }
+        .contact-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .contact-item {
+            text-align: center;
+        }
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -126,9 +156,23 @@
                     Greetings! I'm Patrick Cataldo, a recent graduate from James Madison University with a dual focus in Economics and Computer Information Systems.<br><br>
                     My passion lies in the realm of data analytics and programming, where I continuously seek opportunities to expand my expertise and contribute meaningfully to innovative projects.<br><br>
                     This portfolio showcases a selection of my projects, demonstrating my proficiency in programming, data analytics, and data science.<br><br>
-                    I welcome professional inquiries and collaboration opportunities.<br><br>
-                    Contact: +1 804 887 0760 | patrickccataldo@gmail.com
+                    I welcome professional inquiries and collaboration opportunities.
                 </p>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <img src="path/to/java-logo.png" alt="Java" class="skill-icon">
+                    <p>Java</p>
+                </div>
+                <div class="skill-item">
+                    <img src="path/to/python-logo.png" alt="Python" class="skill-icon">
+                    <p>Python</p>
+                </div>
+                <!-- Add more skills as needed -->
             </div>
         </section>
 
@@ -165,6 +209,32 @@
             <!-- Add more project sections as needed -->
 
         </section>
+
+        <section class="contact">
+            <h2>Contact Me</h2>
+            <div class="contact-list">
+                <div class="contact-item">
+                    <img src="path/to/phone-icon.png" alt="Phone" class="contact-icon">
+                    <p>+1 804 887 0760</p>
+                </div>
+                <div class="contact-item">
+                    <img src="path/to/email-icon.png" alt="Email" class="contact-icon">
+                    <p>patrickccataldo@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <a href="https://www.linkedin.com/in/your-profile" target="_blank">
+                        <img src="path/to/linkedin-icon.png" alt="LinkedIn" class="contact-icon">
+                        <p>LinkedIn</p>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <a href="path/to/your-resume.pdf" target="_blank">
+                        <img src="path/to/resume-icon.png" alt="Resume" class="contact-icon">
+                        <p>Resume</p>
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <div class="fullscreen-overlay">
@@ -196,7 +266,8 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                } else {
+                    entry.target.classList.remove('visible');
                 }
             });
         };
