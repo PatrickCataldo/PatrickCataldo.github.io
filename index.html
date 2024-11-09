@@ -1,178 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags and Styles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patrick Cataldo | Personal Portfolio</title>
     <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --secondary-color: #ecf0f1; /* Light Gray */
+            --accent-color: #e74c3c;   /* Red */
+            --text-color: #ecf0f1;     /* Light Gray for text */
+            --font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: var(--font-family);
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
         }
+
         .container {
-            width: 80%;
+            width: 85%;
             margin: auto;
             overflow: hidden;
             padding: 20px;
         }
+
+        /* Header */
         header {
-            background: #333;
+            background: var(--primary-color);
             color: #fff;
-            padding-top: 30px;
-            min-height: 70px;
+            padding: 50px 0 20px;
             text-align: center;
+            position: relative;
         }
+
         header h1 {
             margin: 0;
-            padding-bottom: 10px;
             font-size: 2.5em;
+            opacity: 0;
         }
-        header .subtitle {
+
+        .title-line {
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            margin: 10px auto;
+            transition: width 1s ease-in-out;
+        }
+
+        .subtitle {
             font-size: 1.2em;
+            color: #fff;
             margin-top: 10px;
+            opacity: 0;
         }
-        .contact-icon {
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-        }
-        .about {
+
+        /* Navigation */
+        nav {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 20px 0;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-top: 20px;
+            opacity: 0;
         }
-        .headshot {
-            width: 150px;
-            height: 150px;
-            background-color: #ddd;
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-right: 30px;
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
         }
-        .bio {
-            flex-grow: 1;
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            opacity: 0;
         }
-        .skills {
-            padding: 20px 0;
-        }
-        .skills-container {
+
+        /* Section Container */
+        .section-container {
             background: #fff;
             padding: 20px;
             margin-bottom: 20px;
-            border-radius: 5px;
+            border-radius: 10px; /* Rounded edges */
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.5s, transform 0.5s;
+            color: #333; /* Text color inside sections */
         }
-        .skills-container.visible {
+
+        .section-container.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .section-container h2 {
+            color: var(--primary-color); /* Blue color for titles */
+            text-align: center;
+            position: relative;
+        }
+
+        /* Line under Section Titles */
+        .section-container h2::after {
+            content: '';
+            width: 100px;
+            height: 2px;
+            background-color: #fff;
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        /* Skills and Expertise */
+        .skills-expertise {
+            /* Already styled by .section-container */
+        }
+
         .skills-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 40px;
         }
+
         .skill-item {
+            flex: 1 1 200px;
+            max-width: 300px;
             text-align: center;
-            width: 120px;
-            transition: transform 0.3s ease;
         }
-        .skill-item:hover {
-            transform: scale(1.1);
-        }
-        .skill-icon {
+
+        .skill-item img {
             width: 60px;
             height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .skill-item h3 {
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
+
+        .card-content {
+            padding: 20px;
+            min-height: 150px;
+        }
+
+        /* Changed project titles to accent color */
+        .card-content h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: var(--accent-color); /* Changed to accent color */
+        }
+
+        .project-date {
+            font-size: 0.9em;
+            color: #666;
             margin-bottom: 10px;
         }
-        .skill-item p {
-            font-size: 14px;
-            margin: 0;
-        }
-        .project {
-            background: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        .project.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .project h3 {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-        .project-date {
-            font-size: 0.8em;
-            font-weight: normal;
-            color: #666;
-        }
-        .project-images {
-            display: flex;
-            overflow-x: auto;
-            margin-bottom: 20px;
-        }
-            .project-image {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            margin-right: 10px;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-    
-        .project-image:hover {
-            transform: scale(1.1);
-            z-index: 1;
-        }
-        .project-description {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 10px 20px;
-        }
-        .project-description dt {
-            font-weight: bold;
-        }
+
         .project-tools {
             display: flex;
             gap: 10px;
-            margin-top: 10px;
+            margin-bottom: 15px;
         }
+
         .tool-icon {
             width: 30px;
             height: 30px;
         }
+
+        /* Project Overlay */
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44,62,80,0.95);
+            color: #fff;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center content vertically */
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box; /* Include padding in height */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .project-overlay h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .project-overlay p {
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+
         .download-btn {
-            display: inline-block;
-            background: #333;
+            background-color: var(--accent-color);
             color: #fff;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+            margin: 5px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .download-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-        .download-btn:active {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+        /* Contact Section */
+        .contact-section {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+            color: #333;
+            text-align: center;
         }
+
+        .contact-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Line under Contact Section Title */
+        .contact-section h2::after {
+            content: '';
+            width: 100px;
+            height: 2px;
+            background-color: #fff;
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .contact-icons a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-icons img {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s;
+        }
+
+        .contact-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Typed.js Cursor */
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Fullscreen Overlay */
         .fullscreen-overlay {
             display: none;
             position: fixed;
@@ -185,10 +365,12 @@
             justify-content: center;
             align-items: center;
         }
+
         .fullscreen-image {
             max-width: 90%;
             max-height: 90%;
         }
+
         .close-btn {
             position: absolute;
             top: 20px;
@@ -197,59 +379,36 @@
             font-size: 30px;
             cursor: pointer;
         }
-        footer {
-            background: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-        footer .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-        footer a {
-        color: #fff;
-        text-decoration: none;
-        }
-    
-        footer a:hover {
-            text-decoration: underline;
-        }
-        .typed-cursor {
-            opacity: 1;
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        .about-container {
-            background: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        .about-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .title-line {
-            width: 0;
-            height: 2px;
-            background-color: #fff;
-            margin: 10px auto;
-            transition: width 1s ease-in-out;
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            .container {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-image img {
+                height: 200px;
+            }
+
+            .contact-icons {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <h1 id="typed-name"></h1>
@@ -259,231 +418,162 @@
     </header>
 
     <div class="container">
-        <section class="about-container">
-            <div class="about">
-                <div class="headshot">
-                    <img src="other-images/headshot.jpg" alt="Headshot" class="headshot">
+        <!-- Skills and Expertise Section -->
+        <section id="skills" class="section-container skills-expertise">
+            <h2>Skills and Expertise</h2>
+            <div class="skills-list">
+                <!-- Skill Item 1 -->
+                <div class="skill-item">
+                    <img src="skill-icons/data-analysis.svg" alt="Data Analysis">
+                    <h3>Data Analysis & Modeling</h3>
+                    <p>Expertise in analyzing complex datasets to extract actionable insights.</p>
                 </div>
-                <div class="bio">
-                    <h2>About Me</h2>
-                    <p>
-                        Welcome to my Personal Portfolio!<br><br>
-                        I am a student at James Madison University where I am studying Economics and Computer Information Systems.<br><br>
-                        Currently, I am looking for roles as a Data Analyst where I can leverage my degree, skills, and past experiences to make a quantifiable impact.<br><br>
-                        Posted here are some projects I have worked on in both my past roles, and in my free time that I believe to be valuable parts of my resume.<br><br>
-                        If you have any advice, project suggestions, or any other inquiries, please see my contact information below. Thanks!<br><br>
-                        - Patrick Cataldo
-
-                    </p>
+                <!-- Skill Item 2 -->
+                <div class="skill-item">
+                    <img src="skill-icons/data-visualization.svg" alt="Data Visualization">
+                    <h3>Data Visualization</h3>
+                    <p>Skilled in creating intuitive visualizations to communicate data effectively.</p>
                 </div>
+                <!-- Skill Item 3 -->
+                <div class="skill-item">
+                    <img src="skill-icons/etl-process.svg" alt="ETL Processes">
+                    <h3>ETL Processes</h3>
+                    <p>Proficient in extracting, transforming, and loading data from various sources.</p>
+                </div>
+                <!-- Skill Item 4 -->
+                <div class="skill-item">
+                    <img src="skill-icons/statistical-analysis.svg" alt="Statistical Analysis">
+                    <h3>Statistical Analysis</h3>
+                    <p>Strong background in statistical methods and econometrics.</p>
+                </div>
+                <!-- Add more skills as needed -->
             </div>
         </section>
 
-        <section class="skills">
-            <h2>Skills</h2>
-            <div class="skills-container">
-                <div class="skills-list">
-                    <div class="skill-item">
-                        <img src="skill-icons/java-icon.svg" alt="Java" class="skill-icon">
-                        <p>Java</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/python-icon.svg" alt="Python" class="skill-icon">
-                        <p>Python</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/R-icon.svg" alt="R" class="skill-icon">
-                        <p>R</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/sql-icon.svg" alt="SQL" class="skill-icon">
-                        <p>SQL</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/excel-icon.svg" alt="Excel" class="skill-icon">
-                        <p>Excel</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/powerbi-icon.svg" alt="PowerBI" class="skill-icon">
-                        <p>PowerBI</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/tableau-icon.svg" alt="Tableau" class="skill-icon">
-                        <p>Tableau</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/vb-icon.svg" alt="Visual Basic" class="skill-icon">
-                        <p>VBA</p>
-                    </div>
-                    <div class="skill-item">
-                        <img src="skill-icons/css-icon.svg" alt="CSS" class="skill-icon">
-                        <p>CSS</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="projects">
+        <!-- Projects Section -->
+        <section id="projects" class="section-container">
             <h2>My Projects</h2>
-            <div class="project">
-                <h3>
-                    Company Performance Analysis Dashboard
-                    <span class="project-date">October 2024-November 2024</span>
-                </h3>
-                <div class="project-images">
-                    <img src="other-images/dashboard1.png" alt="Main Page" class="project-image">
-                    <img src="other-images/dashboard2.png" alt="Company Info" class="project-image">
-                    <img src="other-images/dashboard3.png" alt="Performance Analysis" class="project-image">
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <img src="other-images/dashboard1.png" alt="Company Performance Analysis Dashboard">
+                    </div>
+                    <div class="card-content">
+                        <h3>Company Performance Analysis Dashboard</h3>
+                        <p class="project-date">October 2024 - November 2024</p>
+                        <div class="project-tools">
+                            <img src="skill-icons/python-icon.svg" alt="Python" class="tool-icon">
+                            <img src="skill-icons/powerbi-icon.svg" alt="PowerBI" class="tool-icon">
+                        </div>
+                    </div>
+                    <div class="project-overlay">
+                        <h3>Description</h3>
+                        <p>A dashboard designed to analyze company performance using real-time data.</p>
+                        <a href="https://github.com/PatrickCataldo/PatrickCataldo.github.io/raw/refs/heads/main/Company%20Performance%20Analysis%20Dashboard.zip" class="download-btn">Download Project</a>
+                        <a href="https://app.powerbi.com/reportEmbed?reportId=d6265ba2-74e5-4fcd-bf0a-13afbbadafb6&autoAuth=true&ctid=92ebe562-ecd9-47fa-b107-065ebb49968e" class="download-btn">View Dashboard</a>
+                    </div>
                 </div>
-                <dl class="project-description">
-                    <dt>Description:</dt>
-                    <dd>To be added.</dd>
-                    
-                    <dt>Problem:</dt>
-                    
-                    <dt>Action:</dt>
-                    
-                    <dt>Result:</dt>
-                </dl>
-                <div class="project-tools">
-                    <strong>Tools & Skills used:</strong>
-                    <img src="skill-icons/python-icon.svg" alt="Java" class="tool-icon">
-                    <img src="skill-icons/powerbi-icon.svg" alt="SQL" class="tool-icon">
+                <!-- Project Card 2 -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <img src="InventorySystem_Project_Images/products_9-11-24.png" alt="Inventory Management System">
+                    </div>
+                    <div class="card-content">
+                        <h3>Inventory Management System</h3>
+                        <p class="project-date">August 2024 - Present</p>
+                        <div class="project-tools">
+                            <img src="skill-icons/java-icon.svg" alt="Java" class="tool-icon">
+                            <img src="skill-icons/sql-icon.svg" alt="SQL" class="tool-icon">
+                            <img src="skill-icons/css-icon.svg" alt="CSS" class="tool-icon">
+                        </div>
+                    </div>
+                    <div class="project-overlay">
+                        <h3>Description</h3>
+                        <p>I developed an Inventory Management System to showcase my programming, analytical, and UI design skills.</p>
+                        <a href="https://github.com/PatrickCataldo/InventorySystem/raw/main/Inventory%20Management%20System_Updated.zip" class="download-btn">Download Project</a>
+                    </div>
                 </div>
-                <a href="https://github.com/PatrickCataldo/PatrickCataldo.github.io/raw/refs/heads/main/Company%20Performance%20Analysis%20Dashboard.zip" class="download-btn">Download Project</a>
-                <a href="https://app.powerbi.com/reportEmbed?reportId=d6265ba2-74e5-4fcd-bf0a-13afbbadafb6&autoAuth=true&ctid=92ebe562-ecd9-47fa-b107-065ebb49968e" class="download-btn">View Dashboard</a>
+                <!-- Project Card 3 -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <img src="CustomerTrackingSystem_Project_Images/main.png" alt="Customer Tracking Application">
+                    </div>
+                    <div class="card-content">
+                        <h3>Customer Tracking Application</h3>
+                        <p class="project-date">July 2024</p>
+                        <div class="project-tools">
+                            <img src="skill-icons/java-icon.svg" alt="Java" class="tool-icon">
+                            <img src="skill-icons/sql-icon.svg" alt="SQL" class="tool-icon">
+                            <img src="skill-icons/css-icon.svg" alt="CSS" class="tool-icon">
+                            <img src="skill-icons/excel-icon.svg" alt="Excel" class="tool-icon">
+                        </div>
+                    </div>
+                    <div class="project-overlay">
+                        <h3>Description</h3>
+                        <p>I created a Java-based customer management system using SQL to track customer contact info, address, and demographics like age.</p>
+                        <a href="https://github.com/PatrickCataldo/Simple-Customer-Management-System/releases/download/1.0/Customer.Info.System.zip" class="download-btn">Download Project</a>
+                    </div>
+                </div>
+                <!-- Project Card 4 -->
+                <div class="project-card">
+                    <div class="card-image">
+                        <img src="csv-generator-images/main.png" alt="CSV Automation Tool">
+                    </div>
+                    <div class="card-content">
+                        <h3>CSV Automation Tool</h3>
+                        <p class="project-date">July 2023 - August 2023</p>
+                        <div class="project-tools">
+                            <img src="skill-icons/excel-icon.svg" alt="Excel" class="tool-icon">
+                            <img src="skill-icons/vb-icon.svg" alt="Visual Basic" class="tool-icon">
+                        </div>
+                    </div>
+                    <div class="project-overlay">
+                        <h3>Description</h3>
+                        <p>Developed an Excel-based application to speed up data transformation and upload processes during my internship at Junior Golf Scoreboard.</p>
+                        <a href="https://github.com/PatrickCataldo/JuniorGolfScoreBoard-CSV-Generator/raw/main/JGS_DataCleaner%201.4_2024.xlsm" class="download-btn">Download Project</a>
+                    </div>
+                </div>
+                <!-- Add more project cards as needed -->
             </div>
-            
-            <div class="project">
-                <h3>
-                    Inventory Management System
-                    <span class="project-date">August 2024 - Present</span>
-                </h3>
-                <div class="project-images">
-                    <img src="InventorySystem_Project_Images/products_9-11-24.png" alt="Products" class="project-image">
-                    <img src="InventorySystem_Project_Images/suppliers_9-11-24.png" alt="Suppliers" class="project-image">
-                    <img src="InventorySystem_Project_Images/inventory_9-11-24.png" alt="Inventory" class="project-image">
-                    <img src="InventorySystem_Project_Images/sales_9-11-24.png" alt="Sales" class="project-image">
-                    <img src="InventorySystem_Project_Images/orders_9-11-24.png" alt="Orders" class="project-image">
-                    <img src="InventorySystem_Project_Images/dashboard_9-11-24.png" alt="Dashboard" class="project-image">
-                </div>
-                <dl class="project-description">
-                    <dt>Description:</dt>
-                    <dd>I developed an Inventory Management System to showcase my programming, analytical, and UI design skills</dd>
-                    
-                    <dt>Problem:</dt>
-                    <dd>A small business that lacks a computerized management system may suffer from inefficient inventory management and improper sales & order tracking.</dd>
-                    
-                    <dt>Action:</dt>
-                    <dd>To combat this problem, I designed and developed a system with real-time inventory tracking, a dashboard with inventory and transactional analytics, and reporting features.</dd>
-                    
-                    <dt>Result:</dt>
-                    <dd>This would allow businesses to efficiently keep track of their inventory, and utilize data-driven decision making to better optimize their business.</dd>
-                </dl>
-                <div class="project-tools">
-                    <strong>Tools & Skills used:</strong>
-                    <img src="skill-icons/java-icon.svg" alt="Java" class="tool-icon">
-                    <img src="skill-icons/sql-icon.svg" alt="SQL" class="tool-icon">
-                    <img src="skill-icons/css-icon.svg" alt="CSS" class="tool-icon">
-                </div>
-                <a href="https://github.com/PatrickCataldo/InventorySystem/raw/main/Inventory%20Management%20System_Updated.zip" class="download-btn">Download Project</a>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2>Contact Me</h2>
+            <!-- White line under the title is added via CSS -->
+            <div class="contact-icons">
+                <a href="https://www.linkedin.com/in/patrick-cataldo" target="_blank">
+                    <img src="contact-icons/linkedin-icon.svg" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/PatrickCataldo" target="_blank">
+                    <img src="contact-icons/github-icon.svg" alt="GitHub">
+                </a>
             </div>
-
-            <div class="project">
-                <h3>
-                    Customer Tracking Application
-                    <span class="project-date">July 2024</span>
-                </h3>
-                <div class="project-images">
-                    <img src="CustomerTrackingSystem_Project_Images/main.png" alt="Main Screen" class="project-image">
-                    <img src="CustomerTrackingSystem_Project_Images/dashboard.png" alt="Dashboard" class="project-image">
-                    <img src="CustomerTrackingSystem_Project_Images/fileOptions.png" alt="File Options" class="project-image">
-                    <img src="CustomerTrackingSystem_Project_Images/entryForm.png" alt="File Options" class="project-image">
-                </div>
-                <dl class="project-description">
-                    <dt>Description:</dt>
-                    <dd>I created a Java-based customer management system using SQL to track customer contact info, address, and demographics like age.</dd>
-                    
-                    <dt>Problem:</dt>
-                    <dd>Without a centralized system, businesses could struggle to efficiently manage customer data and gain insights into their customer base.</dd>
-                    
-                    <dt>Action:</dt>
-                    <dd>I built a system with customer tracking, a dashboard for demographic analysis, and features for bulk file uploads/downloads.</dd>
-                    
-                    <dt>Result:</dt>
-                    <dd>Demonstrated skills in creating user-friendly data management systems, with insightful visualizations that could drive business strategies.</dd>
-                </dl>
-                <div class="project-tools">
-                    <strong>Tools & Skills used:</strong>
-                    <img src="skill-icons/java-icon.svg" alt="Java" class="tool-icon">
-                    <img src="skill-icons/sql-icon.svg" alt="SQL" class="tool-icon">
-                    <img src="skill-icons/css-icon.svg" alt="CSS" class="tool-icon">
-                    <img src="skill-icons/excel-icon.svg" alt="Excel" class="tool-icon">
-                </div>
-                <a href="https://github.com/PatrickCataldo/Simple-Customer-Management-System/releases/download/1.0/Customer.Info.System.zip" class="download-btn">Download Project</a>
-            </div>
-
-            <div class="project">
-                <h3>
-                    CSV Automation Tool
-                    <span class="project-date">July 2023 - August 2023</span>
-                </h3>
-                <div class="project-images">
-                    <img src="csv-generator-images/main.png" alt="Main Screen" class="project-image">
-                    <img src="csv-generator-images/readMe.png" alt="Read Me" class="project-image">
-                    <img src="csv-generator-images/export.png" alt="Export" class="project-image">
-                    <img src="csv-generator-images/lock.png" alt="Lock" class="project-image">
-                    <img src="csv-generator-images/viewer1.png" alt="Viewer" class="project-image">
-                    <img src="csv-generator-images/viewer2.png" alt="Viewer" class="project-image">
-                </div>
-                <dl class="project-description">
-                    <dt>Description:</dt>
-                    <dd>During my internship at Junior Golf Scoreboard, I developed an excel-based application that allowed the team to speed up data transformation and upload processes.</dd>
-                    
-                    <dt>Problem:</dt>
-                    <dd>Junior Golf Scoreboard brings an intern to their team every summer to help combat the volumn of tournaments sent in by clients to their organization. Their previous process of handling data correction was to manually correct each cell that had missing or invalid values, which slowed tournament upload time.</dd>
-                    
-                    <dt>Action:</dt>
-                    <dd>To help streamline the process of downloading tournament data, correcting data, and exporting it as a csv file for upload, I built a tool in excel to do the work for them. I created several versions, each one improving on the last. I added several features like admin controls, a data preview tool, and a form clear button.</dd>
-                    
-                    <dt>Result:</dt>
-                    <dd>After my tool was integrated into Junior Golf Scoreboards business process, there was a significant reduction in both uploaded errors, and time taken to upload data.</dd>
-                </dl>
-                <div class="project-tools">
-                    <strong>Tools & Skills used:</strong>
-                    <img src="skill-icons/excel-icon.svg" alt="Excel" class="tool-icon">
-                    <img src="skill-icons/vb-icon.svg" alt="Visual Basic" class="tool-icon">
-                </div>
-                <a href="https://github.com/PatrickCataldo/JuniorGolfScoreBoard-CSV-Generator/raw/main/JGS_DataCleaner%201.4_2024.xlsm" class="download-btn">Download Project</a>
-            </div>
-
-            <!-- Add more project sections as needed -->
-
         </section>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <span><img src="contact-icons/phone-icon.svg" alt="Phone" class="contact-icon"> +1 804 887 0760</span>
-            <span><img src="contact-icons/email-icon.svg" alt="Email" class="contact-icon"> patrickccataldo@gmail.com</span>
-            <a href="https://www.linkedin.com/in/patrick-cataldo" target="_blank">
-                <img src="contact-icons/linkedin-icon.svg" alt="LinkedIn" class="contact-icon"> LinkedIn Profile
-            </a>
-            <a href="resumes/PCC_Resume_October2024.pdf" target="_blank">
-                <img src="contact-icons/resume-icon.svg" alt="Resume" class="contact-icon"> View my Resume
-            </a>
+            <p>&copy; 2024 Patrick Cataldo. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Fullscreen Image Viewer -->
     <div class="fullscreen-overlay">
         <span class="close-btn">&times;</span>
         <img src="" alt="Fullscreen Image" class="fullscreen-image">
     </div>
 
+    <!-- Scripts -->
+    <!-- Include Typed.js Locally or via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
         // Typing effect and animation sequence
         function startTypingAnimation() {
+            const nameElement = document.getElementById('typed-name');
+            nameElement.style.opacity = '1';
             new Typed('#typed-name', {
                 strings: ['Patrick Cataldo'],
                 typeSpeed: 50,
@@ -497,10 +587,12 @@
         function drawLine() {
             const line = document.getElementById('title-line');
             line.style.width = '100%';
-            setTimeout(typeSubtitle, 1000);
+            setTimeout(typeSubtitle, 500);
         }
 
         function typeSubtitle() {
+            const subtitleElement = document.getElementById('typed-subtitle');
+            subtitleElement.style.opacity = '1';
             new Typed('#typed-subtitle', {
                 strings: ['Project Portfolio'],
                 typeSpeed: 50,
@@ -512,7 +604,7 @@
         window.addEventListener('load', startTypingAnimation);
 
         // Fullscreen image viewer
-        const images = document.querySelectorAll('.project-image');
+        const images = document.querySelectorAll('.card-image img');
         const overlay = document.querySelector('.fullscreen-overlay');
         const fullscreenImage = document.querySelector('.fullscreen-image');
         const closeBtn = document.querySelector('.close-btn');
@@ -528,8 +620,8 @@
             overlay.style.display = 'none';
         });
 
-        // Project and about section reveal on scroll
-        const revealElements = document.querySelectorAll('.skills-container, .project, .about-container');
+        // Section reveal on scroll
+        const revealElements = document.querySelectorAll('.section-container, .contact-section');
         const revealElement = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
